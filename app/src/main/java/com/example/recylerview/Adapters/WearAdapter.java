@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,7 +28,7 @@ public class WearAdapter extends RecyclerView.Adapter<WearAdapter.viewholder>{
 
     @NonNull
     @Override
-    public viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        public viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.sample_recycleview, parent, false);
         return new viewholder(view);
     }
@@ -37,6 +38,7 @@ public class WearAdapter extends RecyclerView.Adapter<WearAdapter.viewholder>{
         WearsModel model = list.get(position);
         holder.imageView.setImageResource(model.getImg());
         holder.textView.setText(model.getText());
+
     }
 
     @Override

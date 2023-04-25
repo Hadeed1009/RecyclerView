@@ -6,9 +6,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import com.example.recylerview.Adapters.WearAdapter;
+import com.example.recylerview.Classes.RecyclerItemClickListener;
 import com.example.recylerview.Modelss.WearsModel;
 
 import java.util.ArrayList;
@@ -47,6 +51,26 @@ public class MainActivity extends AppCompatActivity {
 
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         recycleView.setLayoutManager(layoutManager);
+
+        recycleView.addOnItemTouchListener(new RecyclerItemClickListener
+                (this, recycleView, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        WearsModel model = list.get(position);
+
+                        Intent intent=new Intent(MainActivity.this,MainActivity2.class);
+                        intent.putExtra("image",model.getImg());
+                        intent.putExtra("text",model.getText());
+                        startActivity(intent);
+                        Toast.makeText(MainActivity.this, "Clicked "+position+" "+model.getText(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onLongItemClick(View view, int position) {
+
+                    }
+
+        }));
 
 //        GridLayoutManager layoutManager = new GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false);
 //        recycleView.setLayoutManager(layoutManager);
