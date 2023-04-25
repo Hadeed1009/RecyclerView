@@ -1,0 +1,65 @@
+1. Add recylerview in constraint/linear layout of Mainactivity
+2. findViewById of recylerview in mainActivity
+
+//make sample design for recycle view
+3. res-->layout-->new-->layout resource file
+4. add Card view in Constraint layout of Sample xml file
+5. add linear layout in card
+6. add image view in linear layout
+7. adjust height of constraint layout according to requirement
+8. set margin and radius of card view
+9. also set cardmaxelvation
+10. adjust height of image view and text view
+11. set scaletype of image view according to requirement
+12. also set margin and gravity of textview
+
+//Create Model to get images and text and set in Recyle view
+13. package-->new-->package-->name=Models(not mandatory)-->new Java class
+14. Declare img and text variable in Model Class
+15. make constructor with parameter img and text
+16. make getter and setter of img and text
+
+//Make Adapter to get data from some data source
+17. package-->new-->Package-->name=Adapters(Not Mandatory)-->new Java CLass
+18. make viewHolder class in Adapter_class that extends RecylerView.ViewHolder
+19. make default constructor
+20. Declare ImageView and TextView in viewHolder class
+21. find their id's in constructor using itemView.findViewById
+22. import class for 'R'
+23. Extend Adapter_Class with RecyclerView.Adapter<Adapter_Class.viewholder>
+24. Implements default 3 methods
+25. Declare Arraylist of type Model_Class in Adapter_class=>ArrayList<Model_CLass> list;
+26. also declare Context context;
+
+//onCreateViewHolder=>use to inflate view in list
+27. View view = LayoutInflater.from(context).inflate(R.layout.sample_layout, parent, false);
+    return new viewholder(view);
+
+//onBindViewHolder=>use to get values
+28. WearsModel model = list.get(position);
+    holder.imageView.setImageResource(model.getImg());	//getImg=>model_class
+    holder.textView.setText(model.getText());
+
+//getItemCount()=>get total no of list size
+29. replace return 0 with return list.size() in getItemCount()
+
+//MainActivity Code
+30. make ArrayList of Type Model_class =>ArrayList<Model_Class> list = new ArrayList<>();
+31. add imgs & texts in list =>list.add(new WearsModel(R.drawable.image, "text"));
+32. make object of Adapter class and set in a recylcerView
+	=>Adapter_Class adapter = new Adapter_Class(list, this);
+        recycleView.setAdapter(adapter); 
+
+//Linear List Layout (By default vertical)
+33. LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+34. recycleView.setLayoutManager(layoutManager);
+
+//Linear Horizontal layout
+35. LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+36. recycleView.setLayoutManager(layoutManager);
+
+//Grid Layout
+37. GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+38. recycleView.setLayoutManager(layoutManager);
+
+
